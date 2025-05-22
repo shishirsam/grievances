@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alur's Grievance Portal 💌</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to right, #ffe4ec, #e0f7fa);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 480px;
+      border: 3px dashed #f48fb1;
+      text-align: center;
+      position: relative;
+    }
+
+    .container img.gif {
+      width: 100px;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: 'Doto', Regular;
+      color: #ec407a;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.6rem 0;
+      border: 2px solid #f8bbd0;
+      border-radius: 1rem;
+      font-size: 1rem;
+      background-color: #ffe5f2;
+      color: #333;
+      resize: none;
+    }
+
+    button {
+      background-color: #f06292;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 0.9rem;
+      border: none;
+      border-radius: 2rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #ec407a;
+    }
+
+    .footer-note {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Optional Cute GIF -->
+    <img src="https://media1.tenor.com/m/15S5EgnUakMAAAAd/cat-kiss.gif" class="gif" alt="Love GIF">
+
+    <h2>Welcome to your Grievance Portal Kanna!</h2>
+
+   
+    <form id="grievance-form">
+      <input type="text" id="title" placeholder="What's bothering you, Kanna?" required />
+      <textarea id="message" placeholder="What is on your mind?" rows="4" required></textarea>
+
+      <select id="mood">
+        <option value="Neutral">😐Just for kicks</option>
+        <option value="Happy">😎I am the funniest</option>
+        <option value="Sad">😭 Channeling my inner Shishir</option>
+        <option value="Angry">😠 Mad at u >:(</option>
+      </select>
+
+      <select id="severity">
+        <option value="Low">Joks</option>
+        <option value="Medium">I am going to shoot you</option>
+        <option value="High">Need hugs</option>
+        <option value="Critical">💔Do you hate me💔</option>
+      </select>
+      
+
+      <button type="submit">💌 Send to sam</button>
+    </form>
+
+    <p class="footer-note">Made with love for Aditya 💘</p>
+  </div>
+
+
+
+
+
+
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwE9i6bNCdUe4st33T42ax2XGODF95NFR8DlH9uFOvPtFp2T7FQHuqUAK4gZE7RGYpeZw/exec';
+
+    document.getElementById('grievance-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const data = {
+        title: document.getElementById('title').value,
+        message: document.getElementById('message').value,
+        mood: document.getElementById('mood').value,
+        severity: document.getElementById('severity').value
+      };
+
+      fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        
+        alert('Submitted! I’ll look at it with love and cry about it later.💌');
+        document.getElementById('grievance-form').reset();
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        alert('😿 Uh-oh. Technically Errors. But I still love you💖.');
+      });
+    });
+  </script>
+
+
+</body>
+</html>
